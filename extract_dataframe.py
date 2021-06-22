@@ -20,6 +20,7 @@ def read_json(json_file: str)->list:
     
     
     return len(tweets_data), tweets_data
+    global tweets_data
 
 class TweetDfExtractor:
     """
@@ -29,60 +30,75 @@ class TweetDfExtractor:
     ------
     dataframe
     """
+    tweets_list = pd.DataFrame(tweet_data)
+    global tweets_list
+    
     def __init__(self, tweets_list):
         
         self.tweets_list = tweets_list
 
     # an example function
     def find_statuses_count(self)->list:
-        statuses_count 
+        statuses_count = tweets_list['quoted_status'].tolist()
+        return text
+        
         
     def find_full_text(self)->list:
-        text = 
-       
+        text = tweets_list['text'].tolist()
+        return text
     
     def find_sentiments(self, text)->list:
         
         return polarity, self.subjectivity
 
     def find_created_time(self)->list:
-       
+        created_at = tweets_list['created_time'].tolist()
         return created_at
 
     def find_source(self)->list:
-        source = 
-
+        source = tweets_list['source'].tolist()
         return source
 
     def find_screen_name(self)->list:
-        screen_name = 
+        screen_name = tweets_list['display_text_range'].tolist()
+        return screen_name
+        
 
     def find_followers_count(self)->list:
         followers_count = 
-
+        return followers_count
+    
     def find_friends_count(self)->list:
         friends_count = 
-
+        return friends_count
+    
     def is_sensitive(self)->list:
         try:
             is_sensitive = [x['possibly_sensitive'] for x in self.tweets_list]
         except KeyError:
             is_sensitive = None
-
         return is_sensitive
 
     def find_favourite_count(self)->list:
-        
+        favorite_count = tweets_list['favorite_count']
+        return favorite_count
     
     def find_retweet_count(self)->list:
-        retweet_count = 
+        retweet_count = tweets_list['retweet_count']
+        return retweek_count
 
     def find_hashtags(self)->list:
         hashtags =
-
+        return hashtags
+    
+    def find_lang(self)->list:
+        lang = tweets_list['lang'].tolist()
+        return lang
+        
     def find_mentions(self)->list:
         mentions = 
-
+        
+        return mention
 
     def find_location(self)->list:
         try:
@@ -93,8 +109,6 @@ class TweetDfExtractor:
         return location
 
     
-        
-        
     def get_tweet_df(self, save=False)->pd.DataFrame:
         """required column to be generated you should be creative and add more features"""
         
